@@ -1,0 +1,51 @@
+/*自定义css*/
+.uni-margin-page {
+    width:calc(100%- 60rpx);
+    margin:0 30rpx;
+    position: relative;
+}
+
+.text {
+    margin: 15rpx 10rpx;
+    padding: 0 20rpx;
+    background-color: #ebebeb;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    color: #777;
+    font-size: 26rpx;
+}
+
+/*文章css*/
+.ftl-article {
+    word-break: break-all;
+    word-wrap: break-word;
+    line-height: 1.5;
+}
+
+.ftl-article-h1 .ftl-article-h2 .ftl-article-h3 {
+    margin: 0 30rpx;
+    color: #333;
+}
+
+.ftl-article-h1 {
+    margin-top: 30rpx;
+    font-size: 48rpx;
+    line-height: 72rpx;
+}
+
+.ftl-article-h2 {
+    margin-top: 30rpx;
+    font-size: 40rpx;
+    line-height: 60rpx;
+}
+.ftl-article-h3 {
+    font-size: 32rpx;
+    line-height: 48rpx;
+}
+.ftl-article-p {
+    margin: 25rpx 30rpx 0;
+    color: #666;
+    font-size: 28rpx;
+    line-height: 42rpx;
+}
