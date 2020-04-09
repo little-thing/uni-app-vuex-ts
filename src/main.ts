@@ -9,9 +9,7 @@ Vue.prototype.$store = store
 Vue.prototype._i18n = i18n
 
 
-
-new Vue({
+new App({
     store,
-    i18n,
-    ...App
-}).$mount()
+    i18n
+}).$mount();

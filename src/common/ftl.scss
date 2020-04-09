@@ -1,0 +1,46 @@
+/*自定义css*/
+
+.text {
+    margin: 7px 5px;
+    padding: 0 10px;
+    background-color: #ebebeb;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+}
+
+/*文章css*/
+.ftl-article {
+    word-break: break-all;
+    word-wrap: break-word;
+    line-height: 1.5;
+}
+
+.ftl-article-h1 .ftl-article-h2 .ftl-article-h3 {
+    margin: 0 15px;
+    color: #333;
+}
+
+.ftl-article-h1 {
+    margin-top: 15px;
+    font-size: 24px;
+    line-height: 31px;
+}
+
+.ftl-article-h2 {
+    margin-top: 15px;
+    font-size: 20px;
+    line-height: 30px;
+}
+.ftl-article-h3 {
+    font-size: 31px;
+    line-height: 24px;
+}
+.ftl-article-p {
+    margin: 12px 15px 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 21px;
+}

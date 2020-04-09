@@ -13,6 +13,7 @@
 <script lang="ts">
     import Vue from 'vue';
     import {Component,Watch} from "vue-property-decorator";
+    import UserModule from "@/store/decorators/user";
     import {
         namespace
     } from "vuex-class";
@@ -23,6 +24,10 @@
         @initModule.State(state => state.hasLogin) public hasLogin!: boolean;
         @initModule.Action('getUserOpenId') getUserOpenId!: Function;
 
+
+        get user(){
+          return UserModule.user;
+        }
         title= 'Hello';
         onLoad() {
             console.log('onLoad')
@@ -42,19 +47,18 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .uni-margin-wrap {
-        width:calc(100%- 60rpx);
-        margin:0 30rpx;
-        position: 'relative';
+        margin:0 30px;
+        position:relative;
     }
     .swiper {
-        height: 300rpx;
+        height: 150px;
     }
     .swiper-item {
         display: block;
-        height: 300rpx;
-        line-height: 300rpx;
+        height: 150px;
+        line-height: 150px;
         text-align: center;
     }
 
