@@ -67,6 +67,6 @@
     }
     .body-item {
         width:50%;
-        height: 300rpx;
+        height: 300px;
     }
 </style>
