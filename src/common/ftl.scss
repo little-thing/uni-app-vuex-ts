@@ -1,47 +1,201 @@
 /*自定义css*/
+.page {
+  background-color: #FAFAFA;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
 
+}
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .page-footer {
+    height: 100px;
+    background-color: #fff;
+    overflow: hidden;
+  }
+
+}
+
+.scroll{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.border-card {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  margin: $margin-space ;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.item-margin {
+  margin: 20px 20px;
+}
+
+.component-body {
+  position: relative;
+  display: flex;
+}
+
+
+ftl-input {
+  flex: 1;
+}
+ftl-list-page {
+  height: 100%;
+  width: 100%;
+}
+ftl-tabs {
+  position: relative;
+  width: 100%;
+}
+
+supplier-picker {
+  width: 100%;
+  flex:1
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
 
 .text {
-    margin: 15px 10px;
-    padding: 0 20px;
-    background-color: #ebebeb;
-    height: 70px;
-    line-height: 70px;
-    text-align: center;
-    color: #777;
-    font-size: 26px;
+  margin: 15px 10px;
+  padding: 0 20px;
+  background-color: #ebebeb;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  color: #777;
+  font-size: 26px;
+}
+
+.popup {
+  padding:20px;
+  max-height: 60vh;
+  overflow:hidden;
+  background-color: $uni-bg-color;
+  border-radius: 30px 30px 0 0;
+  position: relative;
+  .title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .body {
+    position: relative;
+    max-height: 55vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 }
 
 /*文章css*/
 .ftl-article {
-    word-break: break-all;
-    word-wrap: break-word;
-    line-height: 1.5;
+  word-break: break-all;
+  word-wrap: break-word;
+  line-height: 1.5;
 }
 
 .ftl-article-h1 .ftl-article-h2 .ftl-article-h3 {
-    margin: 0 30px;
-    color: #333;
+  margin: 0 30px;
+  color: #333;
 }
 
 .ftl-article-h1 {
-    margin-top: 30px;
-    font-size: 48px;
-    line-height: 72px;
+  margin-top: 30px;
+  font-size: 48px;
+  line-height: 72px;
+}
+
+.ftl-article-info {
+  margin: 0 30px;
+  color: #CCC;
+  font-size: 22px;
+  line-height: 42px;
 }
 
 .ftl-article-h2 {
-    margin-top: 30px;
-    font-size: 40px;
-    line-height: 60px;
+  margin-top: 30px;
+  font-size: 40px;
+  line-height: 60px;
 }
+
 .ftl-article-h3 {
-    font-size: 32px;
-    line-height: 48px;
+  font-size: 32px;
+  line-height: 48px;
 }
+
 .ftl-article-p {
-    margin: 25px 30px 0;
-    color: #666;
-    font-size: 28px;
-    line-height: 42px;
+  margin: 25px 30px 0;
+  color: #666;
+  font-size: 28px;
+  line-height: 42px;
+}
+
+/*表单组件*/
+/*input start*/
+.ftl-input {
+  padding: 24px 0;
+  color: #333;
+  background-color: #FFF;
+  margin-left: 32px;
+  margin-bottom: 1px;
+  position: relative;
+}
+
+.ftl-input:after {
+  content: '';
+  position: absolute;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  pointer-events: none;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  border: 0 solid #d6e4ef;
+  -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom-width: 1px;
+}
+
+.ftl-input-input {
+  flex: 1;
+  display: inline-block;
+  padding-right: 18px;
+  text-align: left;
+}
+
+/*input end*/
+
+/*buton start*/
+.primary-button {
+  position: relative;
+  border-radius: 45rpx;
+  color:$uni-bg-color;
+  background-color: $base-color;
+}
+
+.warning-button {
+  position: relative;
+  color:$uni-bg-color;
+  background-color: $uni-color-warning;
+}
+/*buton end*/
+.ftl-form {
+  margin: 50px;
 }

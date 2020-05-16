@@ -1,9 +1,11 @@
-import axios from "uni-axios-ts";
-
-import _ from 'lodash';
-import config from '@/common/config'
+import axios from "@ftlab/uni-axios";
+import config from '@/common/config';
+import qs from 'qs';
+import utils from "@/common/utils";
+import storage from "@/storage";
 
 axios.defaults.baseURL = config.base_url;
+// axios.defaults.timeout = 10000;
 
 export const HTTP_STATUS = {
   SUCCESS: 200,
@@ -19,64 +21,64 @@ export const HTTP_STATUS = {
   GATEWAY_TIMEOUT: 504
 };
 
-function showError(message: string, show = true) {
-  show &&
-  uni.showToast({
-    title: message || "请求异常",
-    icon: "none"
-  });
-  return Promise.reject(message);
-}
-let showToast = true;
+
 
 axios.interceptors.request.use((config: any) => { /* 请求之前拦截器 */
   front_loading(config.loading);
-  config.header.token = uni.getStorageSync('Authorization');
+  if(config.method === 'GET'){
+    let {data}= config;
+    data=utils.queryFormat(data);
+    config.url += '?' + qs.stringify(data, {encode: false, arrayFormat: 'repeat'});
+    config.data = {}
+  }
+  config.header.Authorization ='Bearer '+ storage.getToken();
   return config;
 });
+
+
 
 // 必须使用异步函数，注意
 axios.interceptors.response.use((response: any) => { /* 请求之后拦截器 */
   //statusCode为200
   finish_Loading();
-  const status = response.data.status;
+  return response;
+},(err:any)=>{
+  let msg: any = undefined;
+  let isToast = true;
+  const status = err.statusCode;
   if (status === HTTP_STATUS.NOT_FOUND) {
-    return showError("请求资源不存在", showToast);
+    msg="请求资源不存在";
   } else if (status === HTTP_STATUS.BAD_GATEWAY) {
-    return showError("服务端出现了问题", showToast);
+    msg='服务端出现了问题';
   } else if (status === HTTP_STATUS.FORBIDDEN) {
-    uni.setStorageSync("Authorization", "");
-    uni.navigateTo({
-      url: "/pages/login/login"
-    });
-    return showError("没有权限访问", showToast);
+    utils.logOut();
+    msg='没有权限';
+
   } else if (status === HTTP_STATUS.AUTHENTICATE) {
-    uni.setStorageSync("Authorization", "");
-    uni.navigateTo({url: "/pages/login/index"});
-    return showError("需要鉴权", showToast);
+    if(err.response.data.action==='login'){
+      msg=err.response.data.message;
+    }else {
+      utils.logOut();
+      utils.toLogin();
+      isToast=false;
+    }
   } else if (status >= 400) {
-    let errorMsg = response.data && response.data.message;
-    return showError(errorMsg, showToast);
-  } else {
-    return response;
+    console.log(err);
+    msg=err.response.data.message;
   }
-},(err)=>{
-  finish_Loading(true,err.response);
-  return Promise.reject(err);
+  finish_Loading(isToast,msg);
+  throw err;
 });
 
 // 结束拦截
-export function finish_Loading(Br: boolean = false, data: any='') {
+export function finish_Loading(Br: boolean = false, data: any='数据加载失败') {
   if (Br) {
     uni.hideLoading();
     uni.showToast({
-      title: '数据加载失败',
+      title: data,
       duration: 2000,
       icon: 'none'
     });
-    if (!_.isEmpty(data)) {
-      console.error(data);
-    }
   } else {
 
     uni.hideLoading()
